@@ -7,4 +7,6 @@
 * 前言
 * Shell 命令行
 
-请使用 XeLaTeXmk 进行编译
+请使用 XeLaTeXmk 进行编译，必要时替换字体
+
+基于模板 [Sufe-Beamer](https://github.com/Su-luoya/Sufe-Beamer)
