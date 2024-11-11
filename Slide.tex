@@ -126,7 +126,7 @@
         编程语言 \quad
         \dots\dots
     }
-    
+
     都不是今天要学的东西\dots\dots
 \end{frame}
 
@@ -211,7 +211,7 @@ brew install wget
 \begin{frame}
     \frametitle{环境配置}
     \textcolor{sufered}{基于类 Unix 命令行进行讲解}
-    
+
     \begin{itemize}
         \item \texttt{Linux 和 macOS}：均为类 Unix 系统，支持 POSIX 规范的命令行
         \item \texttt{Windows}：需要安装 MSYS2 开发环境
@@ -222,7 +222,7 @@ brew install wget
 \begin{frame}
     \frametitle{单个命令}
     \textcolor{sufered}{最简单的结构，仅由一个命令组成}
-    
+
     \begin{itemize}
         \item \texttt{ls (list)}
         \item \texttt{pwd (print working directory)}
@@ -234,7 +234,7 @@ brew install wget
 \begin{frame}[fragile]
     \frametitle{参数对象命令}
     \textcolor{sufered}{命令 + [参数] + [操作对象] + [\dots] (方括号表示可选)}
-    
+
     参数用于改变命令的行为，通常以短格式（如 \texttt{-l}）或长格式（如 \texttt{--long}）表示
     \begin{lstlisting}[numbers=none]
 ls -l\end{lstlisting}
@@ -256,7 +256,7 @@ grep -i "error" fake.log # 等价短格式参数\end{lstlisting}
 
 \begin{frame}
     \frametitle{类 Unix 文件权限系统}
-    
+
     在类 Unix 系统（笼统来说就是 Unix 和 Linux）中，每个文件和目录都有一组权限，决定用户对文件或目录的操作方式。权限分为三类：
     \begin{itemize}
         \item \textbf{所有者}（User）：文件或目录的拥有者
@@ -274,19 +274,19 @@ grep -i "error" fake.log # 等价短格式参数\end{lstlisting}
 \begin{frame}
     \frametitle{文件类型}
     \textcolor{sufered}{共七类，其中最常见的三类为：}
-    
+
     \begin{itemize}
         \item \textbf{普通文件}（regular file）用 \texttt{-} 表示
         \item \textbf{目录}（directory）用 \texttt{d} 表示
         \item \textbf{符号链接}（symlink, symbolic link）用 \texttt{l} 表示
     \end{itemize}
-    
+
     此外还有块设备(\texttt{b} 驱动器)、字符设备(\text{c} 输入输出设备)、命名管道(\texttt{p} 进程单向通信)和套接字(\texttt{s} 网络通信)
 \end{frame}
 
 \begin{frame}
     \frametitle{权限符号解释}
-    
+
     权限由十个字符表示，例如：\texttt{-rw-r--r--}。第一个字符表示文件类型，其后的九个字符分为三组，依次为：
     \begin{itemize}
         \item \texttt{r}：读权限（read）
@@ -299,7 +299,7 @@ grep -i "error" fake.log # 等价短格式参数\end{lstlisting}
 \begin{frame}
     \frametitle{Example}
     \textcolor{sufered}{\texttt{-rw-r--r--} 的含义如下：}
-    
+
     \begin{itemize}
         \item \texttt{-}：文件类型（- 表示普通文件，d 表示目录）
         \item \texttt{rw-}：所有者有读写权限，但没有执行权限
@@ -311,7 +311,7 @@ grep -i "error" fake.log # 等价短格式参数\end{lstlisting}
 
 \begin{frame}[fragile]
     \frametitle{常用权限命令}
-    
+
     \begin{itemize}
         \item \texttt{ls -l}：列出文件的详细信息，包括权限
         \item \texttt{chmod}：改变文件或目录的权限
@@ -327,7 +327,7 @@ chmod u=rw,go=r filename # 将所有者的权限设置为读、写，组和其�
 \begin{frame}[fragile]
     \frametitle{八进制权限}
     \textcolor{sufered}{每个权限都对应一个数值：}
-    
+
     \begin{itemize}
         \item 4：读 r，即 $2^2$
         \item 2：写 w，即 $2^1$
@@ -339,7 +339,7 @@ chmod 755 filename # 代表什么？\end{lstlisting}
 
 \begin{frame}[fragile]
     \frametitle{管道命令}
-    
+
     使用管道符 \texttt{|} 将一个命令的输出作为下一个命令的输入
     \begin{lstlisting}
 cat file.txt | grep "pattern"
@@ -350,13 +350,13 @@ cat file.txt | grep "pattern" | head -n 10\end{lstlisting}
 \begin{frame}
     \centering
     \textcolor{sufered}{管道命令}
-    
+
     \includegraphics[width=0.95\linewidth]{shell/pipe.png}
 \end{frame}
 
 \begin{frame}[fragile]
     \frametitle{后台执行命令}
-    
+
     在命令后加上 \texttt{\&}，可以将命令放到后台执行
     \begin{lstlisting}[numbers=none]
 ping -c 4 google.com &\end{lstlisting}
@@ -367,21 +367,21 @@ sleep 8 &\end{lstlisting}
 
 \begin{frame}[fragile]
     \frametitle{重定向命令}
-    
+
     重定向命令将命令的输出重定向到文件，或者将文件作为命令的输入
     \begin{lstlisting}
 echo "Hello" > output.txt  # 输出重定向
 sort < input.txt           # 输入重定向\end{lstlisting}
     \texttt{>} 覆盖写入文件，\texttt{>>} 追加写入文件
-    
+
     有没有 \texttt{<<} ？
 \end{frame}
 
 \begin{frame}[fragile]
     \frametitle{文件结束符 EOF}
-    
+
     EOF（End Of File）在计算机中是表示文件或数据流结束的标志
-    
+
     在不同数据流中，EOF 的含义和处理略有不同
     \begin{itemize}
         \item \texttt{文件操作：EOF 标志表示文件的结束}
@@ -398,24 +398,24 @@ EOF\end{lstlisting}
 \begin{frame}[fragile]
     \frametitle{复杂重定向}
     \textcolor{sufered}{假设 \texttt{nonexistent\_dir} 不存在：}
-    
+
     \begin{lstlisting}[numbers=none]
 { ls -l /nonexistent_dir 2>&1 && echo "Directory listed successfully" ; } >output.log 2>error.log\end{lstlisting}
-    
+
     ？？？
 \end{frame}
 
 \begin{frame}[fragile]
     \frametitle{标准输入输出}
-    
+
     在命令行环境中，通常有三种标准输入输出流，它们通过文件描述符来表示：
-    
+
     \begin{itemize}
         \item \textbf{标准输入 (stdin)}: 对应文件描述符 \texttt{0}，用于接收来自键盘或其他输入设备的数据
         \item \textbf{标准输出 (stdout)}: 对应文件描述符 \texttt{1}，用于输出正常的命令结果，默认显示在终端中
         \item \textbf{标准错误 (stderr)}: 对应文件描述符 \texttt{2}，用于输出错误消息，也显示在终端中，但与标准输出分开
     \end{itemize}
-    
+
     \begin{lstlisting}[numbers=none]
 command > output.txt 2> error.txt < input.txt\end{lstlisting}
     \begin{itemize}
@@ -427,12 +427,12 @@ command > output.txt 2> error.txt < input.txt\end{lstlisting}
 
 \begin{frame}[fragile]
     \frametitle{逻辑运算法 \texttt{\&\&} 和 \texttt{||}}
-    
+
     \begin{itemize}
         \item \texttt{\&\&}：逻辑与 (AND)，表示前一个命令成功时才执行下一个命令。
         \item \texttt{||}：逻辑或 (OR)，表示前一个命令失败时才执行下一个命令
     \end{itemize}
-    
+
     \begin{lstlisting}
 # 只有当第一个命令成功时，才会执行第二个命令
 command1 && command2
@@ -444,14 +444,14 @@ command1 || command2\end{lstlisting}
 
 \begin{frame}[fragile]
     \frametitle{其他逻辑运算符}
-    
+
     \begin{itemize}
         \item \texttt{;}：无论前一个命令是否成功，都会执行后续命令
         \item \texttt{!}：逻辑非，反转命令的退出状态
         \item \texttt{()}：在子 shell 中执行一组命令
         \item \texttt{\{\}}：在当前 shell 中执行一组命令
     \end{itemize}
-    
+
     \begin{lstlisting}
 # command1 和 command2 无论成功与否都会依次执行
 command1; command2
@@ -469,7 +469,7 @@ command1; command2
 \begin{frame}[fragile]
     \frametitle{注意！！！}
     \textcolor{sufered}{区分 \texttt{\&} 和 \text{\&\&}；\texttt{|} 和 \texttt{||}}
-    
+
     \begin{lstlisting}
 # command1 后台运行，command 2 前台执行
 command1 & command2\end{lstlisting}
@@ -481,17 +481,17 @@ command1 | command2\end{lstlisting}
 \begin{frame}[fragile]
     \frametitle{回过头来}
     \textcolor{sufered}{假设 \texttt{nonexistent\_dir} 不存在：}
-    
+
     \begin{lstlisting}[numbers=none]
 { ls -l /nonexistent_dir 2>&1 && echo "Directory listed successfully" ; } >output.log 2>error.log\end{lstlisting}
-    
+
     ！！！
 \end{frame}
 
 \begin{frame}[fragile]
     \frametitle{SSH 远程主机}
     \textcolor{sufered}{SSH 连接的基本命令}
-    
+
     \begin{lstlisting}
 # 通过 SSH 连接到远程主机
 ssh username@remote_host
@@ -514,7 +514,7 @@ ssh -i /path/to/private_key username@remote_host
         \item -g：允许远程主机连接到本地转发的端口
         \item -L lPort:127.0.0.1:rPort：设置本地端口转发，将本地 lPort 端口映射到远程服务器上的 rPort 端口
     \end{itemize}
-    
+
     \begin{lstlisting}
 # 连接时指定自定义端口
 ssh -CNg -L lPort:127.0.0.1:rPort user@remote -p sPort
@@ -523,9 +523,9 @@ ssh -CNg -L lPort:127.0.0.1:rPort user@remote -p sPort
 
 \begin{frame}[fragile]
     \frametitle{为什么要这样干？}
-    
+
     \textcolor{sufered}{POSIX 可移植操作系统接口}
-    
+
     \begin{itemize}
         \item \texttt{Portable Operating System Interface of UNIX}
         \item 1974年，贝尔实验室正式对外发布 \texttt{Unix}
@@ -537,7 +537,7 @@ ssh -CNg -L lPort:127.0.0.1:rPort user@remote -p sPort
 
 \begin{frame}
     \frametitle{KISS}
-    
+
     \textcolor{sufered}{Unix 设计哲学：Keep It Simple, Stupid}
 \end{frame}
 
@@ -599,6 +599,190 @@ if __name__ == "__main__":
     
     execute_command(command, options, parameters)
 \end{lstlisting}
+\end{frame}
+
+\section{Vim 编辑器}
+\begin{frame}
+    \frametitle{赛博战争}
+    \textcolor{sufered}{无聊的：浏览器大战、操作系统之争、编程语言之争、代码缩进风格之战...}
+
+    \textcolor{sufered}{->编辑器之战}
+
+    GUI: VSCode
+
+    CMD: Vim v.s. Emacs
+
+    编辑器的选择其实通常只是个人问题，但Vim通常是无可避免的选择，因为它与命令行高度集成
+\end{frame}
+
+\begin{frame}
+    \frametitle{Vim设计哲学1}
+    \textcolor{sufered}{Big Browsing, Small Editing}
+
+    \textcolor{sufered}{大阅读，小编辑}
+\end{frame}
+
+\begin{frame}
+    \frametitle{模式}
+    Vim 的设计以大多数时间都花在阅读、浏览和进行少量编辑改动为基础，因此它具有多种操作模式：
+    \begin{itemize}
+        \item 正常模式(NORMAL)：在文件中四处移动光标进行修改
+        \item 插入模式(INSERT)：插入文本
+        \item 替换模式(REPLACE)：替换文本
+        \item 可视模式(VISUAL)：选中文本块
+        \item 命令模式(:)：用于执行命令
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{模式快捷键}
+    \begin{itemize}
+        \item Escape：正常模式
+        \item i：插入模式
+        \item R：替换模式
+        \item v：可视模式
+        \item V：可视（行）模式
+        \item C-v：可视（块）模式
+        \item :：命令模式
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{命令模式}
+    输入\ :\ 进入命令模式后，光标会立即跳到屏幕下方的命令行
+
+    \textcolor{sufered}{命令模式通常涉及到许多与文件本身有关的操作命令}
+    \begin{itemize}
+        \item :q 退出（关闭窗口）
+        \item :w 保存（写）
+        \item :wq 保存然后退出
+        \item :e {文件名} 打开要编辑的文件
+        \item :ls 显示打开的缓存
+        \item :help :w 打开 :w 命令的帮助文档
+        \item :help w 打开 w 移动的帮助文档
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{可视模式}
+    \textcolor{sufered}{选择}
+    \begin{itemize}
+        \item 可视化：v
+        \item 可视化行：V
+    \end{itemize}
+    可以用移动命令来选中
+\end{frame}
+
+\begin{frame}
+    \frametitle{正常模式}
+    \textcolor{sufered}{移动（名词）}
+    \begin{itemize}
+        \item 基本移动: hjkl（左，下，上，右）
+        \item 词：w（下一个词），b（词初），e（词尾）
+        \item 行：0（行初），\^{}（第一个非空格字符），\$（行尾）
+        \item 屏幕：H（屏幕首行），M（屏幕中间），L（屏幕底部）
+        \item 文件：gg（文件头），G（文件尾）
+        \item 行数：:\ +\ 行数\ 或者\ 行数\ +\ G
+        \item 查找：f\ +\ 字符，t\ +\ 字符，F\ +\ 字符，T\ +\ 字符
+    \end{itemize}
+    为什么叫名词？
+\end{frame}
+
+\begin{frame}
+    \frametitle{Vim设计哲学2}
+    \textcolor{sufered}{Vim本身是一种编程语言}
+
+    它形成了一套独立于编辑器的语法规则，并允许通过插件定义自己的命令
+
+    命令可以组合使用，以完成复杂的浏览和编辑任务
+\end{frame}
+
+\begin{frame}
+    \frametitle{语法规则}
+    \textcolor{sufered}{verb\ +\ noun}
+
+    动词\ +\ 名词
+\end{frame}
+
+\begin{frame}
+    \frametitle{编辑（动词）}
+    \begin{itemize}
+        \item i(insert)进入插入模式
+        \item o(open a new line) 在本行之下插入行
+        \item O 在本行之上插入行
+        \item d(delete)\ +\ 移动命令 删除
+        \item c(change)\ +\ 移动命令 改变
+        \item x 删除字符（等同于 dl）
+        \item s(substitute) 替换字符（等同于 cl）
+        \item dd 删除一行
+        \item u(undo) 撤销, C-r(redo) 重做
+        \item y(yank) 复制（其他一些命令比如 d 也会复制）
+        \item p(paste) 粘贴
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{编辑（动词）Con't}
+    \begin{itemize}
+        \item 可视化模式 + 操作
+        \item 选中文字后, d(delete) 删除 或者 c(change) 改变
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Example: 组合}
+    \textcolor{sufered}{组合动词和名词}
+    \begin{itemize}
+        \item dw 删除词，d\$ 删除到行尾
+        \item cw 改变词，相当于先 d 再 i
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{计数}
+    \textcolor{sufered}{你可以用一个计数来结合名词和动词}
+
+    这会执行指定操作若干次
+    \begin{itemize}
+        \item 3w：向后移动三个词
+        \item 5j：向下移动 5 行
+        \item 7dw：删除 7 个词
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{修饰语}
+    \textcolor{sufered}{你可以用修饰语改变“名词”的意义}
+    \begin{itemize}
+        \item i：表示“内部”或者“在内”
+        \item a：表示“周围”
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Example}
+    \begin{itemize}
+        \item ci(：改变当前括号内的内容
+        \item ci[：改变当前方括号内的内容
+        \item da'：删除一个单引号字符串，包括周围的单引号
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{自定义Vim}
+    \textcolor{sufered}{.vimrc}
+
+    Vim 由一个位于 ~/.vimrc 的文本配置文件来配置，可以被重度自定义
+\end{frame}
+
+\begin{frame}
+    \frametitle{扩展Vim}
+    \begin{itemize}
+        \item ctrlp.vim: 模糊文件查找
+        \item ack.vim: 代码搜索
+        \item nerdtree: 文件浏览器
+        \item vim-easymotion: 魔术操作
+    \end{itemize}
 \end{frame}
 
 % \section{Vim 编辑器}
