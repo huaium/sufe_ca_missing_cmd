@@ -785,6 +785,175 @@ if __name__ == "__main__":
     \end{itemize}
 \end{frame}
 
+\section{Git}
+
+\begin{frame}
+    \frametitle{版本控制系统 VCS}
+    \textcolor{sufered}{VCS (Version Control System)}
+
+    一类用于追踪源代码（或其他文件、文件夹）改动的工具
+\end{frame}
+
+\begin{frame}
+    \frametitle{抽象泄漏问题}
+    \textcolor{sufered}{本应隐藏实现细节的抽象化不可避免地暴露出底层细节}
+
+    All non-trivial abstractions, to some degree, are leaky
+
+    所有重大的抽象机制在某种程度上都是有漏洞的
+\end{frame}
+
+\begin{frame}
+    \frametitle{Example}
+    \textcolor{sufered}{TCP/IP}
+    \begin{itemize}
+        \item 软件开发者只需使用可靠传输的协议栈就能完成网络通信任务，并不需要了解下层的IP协议
+        \item 然而有时网络会越过抽象机制泄漏出底层问题
+        \item 例如：劣化的网络通信情况会导致丢包现象严重
+        \item 从而导致程序员在排查Bug时不得不掌握底层知识
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Git 数据模型}
+    \textcolor{sufered}{Git 通过一个精心设计的模型来支持版本控制所需的所有特性}
+    \begin{itemize}
+        \item 快照
+        \item 对象
+        \item 引用
+        \item 仓库
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{快照}
+    \textcolor{sufered}{Git 术语}
+    \begin{itemize}
+        \item \textbf{文件}：Blob 对象（数据对象）
+        \item \textbf{目录}：Tree 对象（树对象）
+    \end{itemize}
+
+    \textcolor{sufered}{快照是被追踪的最顶层的树}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{快照(Continue)}
+    \begin{lstlisting}
+<root> (tree)
+|
++- foo (tree)
+|  |
+|  + bar.txt (blob, contents = "hello world")
+|
++- baz.txt (blob, contents = "git is wonderful")
+    \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{关联快照}
+    \textcolor{sufered}{提交}
+
+    在 Git 中，快照被称为“提交”
+
+    \begin{lstlisting}
+o <-- o <-- o <-- o
+            ^
+             \
+              --- o <-- o
+    \end{lstlisting}
+
+    \begin{itemize}
+        \item 其中的 o 表示一次提交
+        \item 箭头指向了当前提交的父辈
+    \end{itemize}
+    
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{关联快照 (Continue)}
+
+    \textcolor{sufered}{开发完成后}
+
+    这些分支可能会被合并并创建一个新的提交
+    
+    \begin{lstlisting}
+o <-- o <-- o <-- o <----  o 
+            ^            /
+             \          v
+              --- o <-- o
+    \end{lstlisting}
+\end{frame}
+
+\begin{frame}
+    \frametitle{对象}
+    \textcolor{sufered}{Git 中的对象可以是 blob、树或提交}
+
+    当它们引用其他对象时，它们并没有真正的在硬盘上保存这些对象，而是仅仅保存了它们的哈希值作为引用
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{对象 (Continue)}
+    \begin{lstlisting}
+objects = map<string, object>
+
+def store(object):
+    id = sha1(object)
+    objects[id] = object
+
+def load(id):
+    return objects[id]
+    \end{lstlisting}
+\end{frame}
+
+\begin{frame}
+    \frametitle{引用}
+    通过对象存储机制，所有的快照都可以通过\textbf{不变的}哈希值来标记
+    
+    SHA-1 哈希值：如何记住 40 位的十六进制字符？
+    
+    \textcolor{sufered}{给这些哈希值赋予人类可读的名字：\textbf{引用}}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{引用 (Continue)}
+    \begin{lstlisting}
+references = map<string, string>
+
+def update_reference(name, id):
+    references[name] = id
+
+def read_reference(name):
+    return references[name]
+
+def load_reference(name_or_id):
+    if name_or_id in references:
+        return load(references[name_or_id])
+    else:
+        return load(name_or_id)
+    \end{lstlisting}
+
+    \begin{itemize}
+        \item 对象不可变，引用可变：可以被更新，指向新的提交
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{仓库}
+    \textcolor{sufered}{Git 仓库：\textbf{对象}和\textbf{引用}}
+
+    \begin{itemize}
+        \item 在硬盘上，Git 仅存储对象和引用
+        \item 所有的命令都对应着对于提交树的操作
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{资源}
+    \textcolor{sufered}{GitHub Git 文档：}\url{https://docs.github.com/zh/get-started/using-git/about-git}
+    
+    \textcolor{sufered}{Git 游戏：}\url{https://learngitbranching.js.org/?locale=zh_CN}
+\end{frame}
+
 % \section{Vim 编辑器}
 % \begin{frame}
 %     123

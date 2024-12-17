@@ -7,6 +7,7 @@
 1. 前言
 2. Shell 命令行
 3. Vim 编辑器
+4. Git
 
 请使用 XeLaTeXmk 进行编译，必要时替换字体
 
