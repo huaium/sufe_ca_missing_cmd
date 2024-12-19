@@ -7,7 +7,7 @@
 \usepackage{bookman}
 \usefonttheme{serif}
 % \usepackage[T1]{fontenc}
-%\usepackage{tgbonum}
+% \usepackage{tgbonum}
 
 % Other packages
 \usepackage{hyperref}
@@ -36,7 +36,7 @@
 \setlength{\parskip}{1em} % 设置段落之间的间距为 1em
 \graphicspath{{res/}}
 \setCJKmainfont{PingFang SC}
-\setCJKmonofont{Yahei Mono}
+% \setCJKmonofont{Yahei Mono}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -44,12 +44,12 @@
 %% Author
 \author[计算机协会] % The short name
 {
-%Name
+% Name
 计算机协会
-%\inst{1}
-%\and
-%XXX 
-%\inst{2}
+% \inst{1}
+% \and
+% XXX 
+% \inst{2}
 } 
 %% Title & Subtitle
 \title[Command-Line 命令行教学]{Command-Line 命令行教学}
@@ -57,26 +57,26 @@
 %% Institution
 \institute[SUFE]
 {
-%\inst{1}
+% \inst{1}
 % Shanghai University of Finance and Economics
 上海财经大学
-%\and
-%\inst{2}
-%Shanghai University of Finance and Economics
+% \and
+% \inst{2}
+% Shanghai University of Finance and Economics
 }
 %% Date
 \date{23会计学院\ ACCA\ 张华轩}
-%%Logo
-%\logo{\includegraphics[height=1cm]{sufe_logo}}
+%% Logo
+% \logo{\includegraphics[height=1cm]{sufe_logo}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % Document begins
 \begin{document}
 
-%Title page
+% Title page
 \begin{frame}[noframenumbering]
-    %	\thispagestyle{empty}
+    % \thispagestyle{empty}
     \titlepage{}
     % Logo
     \vspace{-0.5cm}
@@ -89,15 +89,17 @@
     \end{figure}
 \end{frame}
 
-% % Contents page
-% \begin{frame}{Contents}
-% 	\tableofcontents[sectionstyle=show,
-% 		subsectionstyle=show/shaded/hide,
-% 		subsubsectionstyle=show/shaded/hide]
-% \end{frame}
+% Contents page
+\begin{frame}{Contents}
+    \tableofcontents[sectionstyle=show,
+        subsectionstyle=show/shaded/hide,
+        subsubsectionstyle=show/shaded/hide]
+\end{frame}
 
 % Body
+% Section 1
 \section{前言}
+
 \begin{frame}
     \textcolor{sufered}{
         操作系统 \quad
@@ -148,6 +150,7 @@
     \includegraphics[width=0.95\linewidth]{ssh.png}
 \end{frame}
 
+% Section 2
 \section{Shell 命令行}
 
 \begin{frame}
@@ -601,7 +604,9 @@ if __name__ == "__main__":
 \end{lstlisting}
 \end{frame}
 
+% Section 3
 \section{Vim 编辑器}
+
 \begin{frame}
     \frametitle{赛博战争}
     \textcolor{sufered}{无聊的：浏览器大战、操作系统之争、编程语言之争、代码缩进风格之战...}
@@ -785,6 +790,7 @@ if __name__ == "__main__":
     \end{itemize}
 \end{frame}
 
+% Section 4
 \section{Git}
 
 \begin{frame}
@@ -866,7 +872,7 @@ o <-- o <-- o <-- o
         \item 其中的 o 表示一次提交
         \item 箭头指向了当前提交的父辈
     \end{itemize}
-    
+
 \end{frame}
 
 \begin{frame}[fragile]
@@ -875,7 +881,7 @@ o <-- o <-- o <-- o
     \textcolor{sufered}{开发完成后}
 
     这些分支可能会被合并并创建一个新的提交
-    
+
     \begin{lstlisting}
 o <-- o <-- o <-- o <----  o 
             ^            /
@@ -908,9 +914,9 @@ def load(id):
 \begin{frame}
     \frametitle{引用}
     通过对象存储机制，所有的快照都可以通过\textbf{不变的}哈希值来标记
-    
+
     SHA-1 哈希值：如何记住 40 位的十六进制字符？
-    
+
     \textcolor{sufered}{给这些哈希值赋予人类可读的名字：\textbf{引用}}
 \end{frame}
 
@@ -950,31 +956,9 @@ def load_reference(name_or_id):
 \begin{frame}
     \frametitle{资源}
     \textcolor{sufered}{GitHub Git 文档：}\url{https://docs.github.com/zh/get-started/using-git/about-git}
-    
+
     \textcolor{sufered}{Git 游戏：}\url{https://learngitbranching.js.org/?locale=zh_CN}
 \end{frame}
-
-% \section{Vim 编辑器}
-% \begin{frame}
-%     123
-% \end{frame}
-
-% \section{Git 版本控制}
-% \begin{frame}
-%     123
-% \end{frame}
-
-% \section{正则表达式}
-% \begin{frame}
-%     123
-% \end{frame}
-
-% \section{SH 脚本}
-% \begin{frame}
-%     123
-% \end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % End
 \begin{frame}[allowframebreaks]%{End}
@@ -992,57 +976,4 @@ def load_reference(name_or_id):
     \printbibliography{} % [heading=bibintoc, title=Reference]
 \end{frame}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-% Snippets
-% \begin{frame}[noframenumbering, plain]{Snippets}
-%     \begin{multicols}{2}
-%         \begin{enumerate}
-%             \item 123~\cite[Page10]{mit}
-%         \end{enumerate}
-%         \begin{itemize}
-%             \item \[V = \frac{4}{3}\pi r^3\]
-%             \item $ V = \frac{4}{3}\pi r^3 $
-%         \end{itemize}
-%     \end{multicols}
-%     \begin{equation}
-%         \label{eq1}
-%         V = \frac{4}{3}\pi r^3
-%     \end{equation}
-%     \center{}
-%     As Equation (\ref{eq1}) \textcolor{sufered}{shows},
-%     $\cdots$, this \emph{equation} is \alert{important}.
-% \end{frame}
-
-% \begin{frame}[noframenumbering, plain]{Snippets}
-%     \begin{columns}
-%         \column{0.5\textwidth}
-%         \begin{block}{Remark}
-%             Sample text
-%         \end{block}
-%         \begin{alertblock}{Important theorem}
-%             red box
-%         \end{alertblock}
-%         \begin{examples}
-%             Sample text in green box.
-%         \end{examples}
-%         \column{0.5\textwidth}
-%         \begin{table}
-%             \centering
-%             \caption{caption}
-%             % \vspace{-0.5cm}
-%             \setlength{\tabcolsep}{5mm}
-%             {
-%                 \begin{tabular}{lcc}
-%                     \toprule %\hline
-%                     1234                     & 123       & a \\ \midrule
-%                     \textcolor{deepred}{135} & w         & f \\
-%                     \textcolor{sufered}{126} & \alert{a} & d \\ \bottomrule
-%                 \end{tabular}
-%             }
-%         \end{table}
-%     \end{columns}
-% \end{frame}
-%\backupend
-%%%%%%%%%%%%%%%%%%%%%%%%%%
 \end{document}
